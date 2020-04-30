@@ -1,4 +1,5 @@
 import sqlite3
+import time
 import telebot
 
 def createDB():
@@ -68,4 +69,8 @@ def handleMessage(message):
 
 print('Bot instance started running.')
 
-bot.polling()
+while True:
+	try:
+		bot.polling()
+	except:
+		time.sleep(5)

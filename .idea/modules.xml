@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../SQLiteFirst/.idea/SQLiteFirst.iml" filepath="$PROJECT_DIR$/../SQLiteFirst/.idea/SQLiteFirst.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TrialHeroku.iml" filepath="$PROJECT_DIR$/.idea/TrialHeroku.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Delivery bot/Version 7/.idea/Version 7.iml" filepath="$PROJECT_DIR$/../Delivery bot/Version 7/.idea/Version 7.iml" />
     </modules>
   </component>
 </project>
