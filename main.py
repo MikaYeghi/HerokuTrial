@@ -12,7 +12,7 @@ def createDB():
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
 	
-	cur.execute("CREATE TABLE IF NOT EXISTS pet(name TEXT, age INT)")
+	cur.execute("CREATE TABLE IF NOT EXISTS pet(id INT, name TEXT, age INT)")
 	
 	con.commit()
 	con.close()
@@ -23,10 +23,10 @@ def addPet(new_pet, chat_id):
 	
 	if type(new_pet[1]) != int:
 		new_pet[1] = int(new_pet[1])
-		cur.execute("INSERT INTO pet VALUES({0}, {1})".format(new_pet[0], new_pet[1]))
+		cur.execute("INSERT INTO pet(id INT, name TEXT, age INT) VALUES({0}, {1})".format(new_pet[0], new_pet[1]))
 		bot.send_message(chat_id=chat_id, text='Питомец был добавлен!')
 	else:
-		cur.execute("INSERT INTO pet VALUES({0}, {1})".format(new_pet[0], new_pet[1]))
+		cur.execute("INSERT INTO pet(id INT, name TEXT, age INT) VALUES({0}, {1})".format(new_pet[0], new_pet[1]))
 		bot.send_message(chat_id=chat_id, text='Питомец был добавлен!')
 	
 	con.commit()
