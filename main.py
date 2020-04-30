@@ -1,5 +1,5 @@
 import sqlite3
-import telebot
+import time
 
 def createDB():
 	con = sqlite3.connect('mydb.db')
@@ -25,5 +25,9 @@ createDB()
 
 pet = ['Мурка', 9]
 addPet(pet)
+k = 0
 
-print("Hello World!")
+while True:
+	print("Hello #{0}".format(k))
+	time.sleep(1)
+	k += 1
