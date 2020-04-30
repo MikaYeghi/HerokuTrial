@@ -3,6 +3,7 @@ import time
 import telebot
 import os
 
+DATABASE_URL = 'sqlite:///mydb.db'
 db = os.environ.get('DATABASE_URL')
 print('DB - ' + db)
 
