@@ -19,13 +19,14 @@ def createDB():
 def addPet(new_pet, chat_id, bot):
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
+	insert_command = "INSERT INTO pet(name, age) VALUES('" + new_pet[0] + "', '" + str(new_pet[1]) + "')"
 	
 	if type(new_pet[1]) != int:
 		new_pet[1] = int(new_pet[1])
-		cur.execute("INSERT INTO pet(name TEXT, age INT) VALUES('" + new_pet[0] + "', '" + str(new_pet[1]))
+		cur.execute(insert_command)
 		bot.send_message(chat_id=chat_id, text='Питомец был добавлен!')
 	else:
-		cur.execute("INSERT INTO pet(name TEXT, age INT) VALUES('" + new_pet[0] + "', '" + str(new_pet[1]))
+		cur.execute(insert_command)
 		bot.send_message(chat_id=chat_id, text='Питомец был добавлен!')
 	
 	con.commit()
