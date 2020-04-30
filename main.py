@@ -2,13 +2,14 @@ import sqlite3
 import time
 import telebot
 import os
+import psycopg2
 
 #DATABASE_URL = 'sqlite:///mydb.db'
-db = os.environ.get('DATABASE_URL')
-print('DB - ' + db)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+print('DB - ' + DATABASE_URL)
 
 def createDB():
-	con = sqlite3.connect(db)
+	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
 	
 	cur.execute("CREATE TABLE IF NOT EXISTS pet(name TEXT, age INT)")
@@ -17,7 +18,7 @@ def createDB():
 	con.close()
 	
 def addPet(new_pet):
-	con = sqlite3.connect(db)
+	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
 	
 	if type(new_pet[1]) != int:
@@ -33,7 +34,7 @@ def addPet(new_pet):
 	con.close()
 	
 def getPets():
-	con = sqlite3.connect(db)
+	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
 	cur.execute("SELECT * FROM pet")
 	data = cur.fetchall()
