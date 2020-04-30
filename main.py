@@ -17,7 +17,14 @@ def addPet(new_pet):
 	con = sqlite3.connect('mydb.db')
 	cur = con.cursor()
 	
-	cur.execute("INSERT INTO pet VALUES(?, ?)", new_pet)
+	if type(new_pet[1]) != int:
+		try:
+			new_pet[1] = int(new_pet[1])
+			cur.execute("INSERT INTO pet VALUES(?, ?)", new_pet)
+		except:
+			print('Not a number!')
+	else:
+		cur.execute("INSERT INTO pet VALUES(?, ?)", new_pet)
 	
 	con.commit()
 	con.close()
