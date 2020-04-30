@@ -22,10 +22,10 @@ def addPet(new_pet, chat_id, bot):
 	
 	if type(new_pet[1]) != int:
 		new_pet[1] = int(new_pet[1])
-		cur.execute("INSERT INTO pet(name TEXT, age INT) VALUES('" + new_pet[0] + "', '" + new_pet[1])
+		cur.execute("INSERT INTO pet(name TEXT, age INT) VALUES('" + new_pet[0] + "', '" + str(new_pet[1]))
 		bot.send_message(chat_id=chat_id, text='Питомец был добавлен!')
 	else:
-		cur.execute("INSERT INTO pet(name TEXT, age INT) VALUES({0}, {1})".format(new_pet[0], new_pet[1]))
+		cur.execute("INSERT INTO pet(name TEXT, age INT) VALUES('" + new_pet[0] + "', '" + str(new_pet[1]))
 		bot.send_message(chat_id=chat_id, text='Питомец был добавлен!')
 	
 	con.commit()
