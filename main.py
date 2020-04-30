@@ -33,7 +33,16 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler()
 def handleMessage(message):
-	bot.send_message(chat_id=message.chat.id, text='Hello world!')
+	if message.text.split()[0] == 'add_pet':
+		new_pet = message.text.split()
+		del new_pet[0]
+		if len(new_pet) == 2:
+			addPet(new_pet)
+			bot.send_message(chat_id=message.chat.id, text='Питомец был добавлен!')
+		else:
+			bot.send_message(chat_id=message.chat.id, text='Введите имя и возраст.')
+	else:
+		bot.send_message(chat_id=message.chat.id, text='Hello world!')
 
 print('Bot instance started running.')
 
