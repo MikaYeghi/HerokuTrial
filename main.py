@@ -28,6 +28,9 @@ addPet(pet)
 k = 0
 
 while True:
-	print("Hello #{0}".format(k))
-	time.sleep(1)
-	k += 1
+	try:
+		print("Hello #{0}".format(k))
+		time.sleep(1)
+		k += 1
+	except Exception as e:
+		print("Error occured...")
