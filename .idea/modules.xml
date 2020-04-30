@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../SQLiteFirst/.idea/SQLiteFirst.iml" filepath="$PROJECT_DIR$/../SQLiteFirst/.idea/SQLiteFirst.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TrialHeroku.iml" filepath="$PROJECT_DIR$/.idea/TrialHeroku.iml" />
     </modules>
   </component>

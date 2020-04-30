@@ -1,5 +1,4 @@
 import sqlite3
-import time
 import telebot
 
 def createDB():
@@ -29,6 +28,19 @@ def addPet(new_pet):
 	con.commit()
 	con.close()
 	
+def getPets():
+	con = sqlite3.connect('mydb.db')
+	cur = con.cursor()
+	cur.execute("SELECT * FROM pet")
+	data = cur.fetchall()
+	pets = ''
+	for pet in data:
+		pets += pet[0] + ', ' + str(pet[1]) + '\n'
+	
+	print(pets)
+	
+	return pets
+	
 createDB()
 
 pet = ['Мурка', 9]
@@ -48,6 +60,9 @@ def handleMessage(message):
 			bot.send_message(chat_id=message.chat.id, text='Питомец был добавлен!')
 		else:
 			bot.send_message(chat_id=message.chat.id, text='Введите имя и возраст.')
+	elif message.text.split()[0] == 'get_pets':
+		text = getPets()
+		bot.send_message(chat_id=message.chat.id, text=text)
 	else:
 		bot.send_message(chat_id=message.chat.id, text='Hello world!')
 
