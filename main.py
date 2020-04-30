@@ -1,4 +1,5 @@
 import sqlite3
+import telebot
 
 def createDB():
 	con = sqlite3.connect('mydb.db')
@@ -24,3 +25,5 @@ createDB()
 
 pet = ['Мурка', 9]
 addPet(pet)
+
+print("Hello World!")
