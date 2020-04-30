@@ -2,8 +2,10 @@ import sqlite3
 import time
 import telebot
 
+db = 'postgres://hvfbjzhkamjjco:51cbf36c88be7868baa30e6b2388e6b20ad3a99d943275a8a9219f9f22ba53b8@ec2-52-207-25-133.compute-1.amazonaws.com:5432/dancedpvlcsjfj'
+
 def createDB():
-	con = sqlite3.connect('mydb.db')
+	con = sqlite3.connect(db)
 	cur = con.cursor()
 	
 	cur.execute("CREATE TABLE IF NOT EXISTS pet(name TEXT, age INT)")
@@ -14,7 +16,7 @@ def createDB():
 	con.close()
 	
 def addPet(new_pet):
-	con = sqlite3.connect('mydb.db')
+	con = sqlite3.connect(db)
 	cur = con.cursor()
 	
 	if type(new_pet[1]) != int:
@@ -30,15 +32,13 @@ def addPet(new_pet):
 	con.close()
 	
 def getPets():
-	con = sqlite3.connect('mydb.db')
+	con = sqlite3.connect(db)
 	cur = con.cursor()
 	cur.execute("SELECT * FROM pet")
 	data = cur.fetchall()
 	pets = ''
 	for pet in data:
 		pets += pet[0] + ', ' + str(pet[1]) + '\n'
-	
-	print(pets)
 	
 	return pets
 	
