@@ -72,5 +72,5 @@ print('Bot instance started running.')
 while True:
 	try:
 		bot.polling()
-	except:
+	except Exception as e:
 		time.sleep(5)
