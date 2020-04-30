@@ -1,5 +1,6 @@
 import sqlite3
 import time
+import telebot
 
 def createDB():
 	con = sqlite3.connect('mydb.db')
@@ -27,10 +28,13 @@ pet = ['Мурка', 9]
 addPet(pet)
 k = 0
 
-while True:
-	try:
-		print("Hello #{0}".format(k))
-		time.sleep(1)
-		k += 1
-	except Exception as e:
-		print("Error occured...")
+token = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
+bot = telebot.TeleBot(token)
+
+@bot.message_handler()
+def handleMessage(message):
+	bot.send_message(chat_id=message.chat.id, text='Hello world!')
+
+print('Bot instance started running.')
+
+bot.polling()
