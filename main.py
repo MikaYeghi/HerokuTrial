@@ -72,4 +72,8 @@ def handleMessage(message):
 
 print('Bot instance started running.')
 
-bot.polling(none_stop=True)
+while True:
+	try:
+		bot.polling(none_stop=True)
+	except Exception as e:
+		print("Error occurred...")
