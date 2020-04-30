@@ -4,14 +4,13 @@ import telebot
 import os
 
 db = os.environ.get('DATABASE_URL')
+print('DB - ' + db)
 
 def createDB():
 	con = sqlite3.connect(db)
 	cur = con.cursor()
 	
 	cur.execute("CREATE TABLE IF NOT EXISTS pet(name TEXT, age INT)")
-	
-	#cur.execute("INSERT INTO pet")
 	
 	con.commit()
 	con.close()
@@ -46,7 +45,6 @@ def getPets():
 createDB()
 
 pet = ['Мурка', 9]
-addPet(pet)
 k = 0
 
 token = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
