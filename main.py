@@ -1,8 +1,9 @@
 import sqlite3
 import time
 import telebot
+import os
 
-db = 'postgres://hvfbjzhkamjjco:51cbf36c88be7868baa30e6b2388e6b20ad3a99d943275a8a9219f9f22ba53b8@ec2-52-207-25-133.compute-1.amazonaws.com:5432/dancedpvlcsjfj'
+db = os.environ.get('DATABASE_URL')
 
 def createDB():
 	con = sqlite3.connect(db)
