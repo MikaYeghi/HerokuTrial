@@ -40,6 +40,9 @@ def getPets():
 	pets = ''
 	for pet in data:
 		pets += pet[0] + ', ' + str(pet[1]) + '\n'
+		
+	if pets=='':
+		pets = 'Пока что нет питомцев.'
 	
 	return pets
 	
