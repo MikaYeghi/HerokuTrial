@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TrialHeroku.iml" filepath="$PROJECT_DIR$/.idea/TrialHeroku.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../postgresdemo/.idea/postgresdemo.iml" filepath="$PROJECT_DIR$/../postgresdemo/.idea/postgresdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Delivery bot/Version 7/.idea/Version 7.iml" filepath="$PROJECT_DIR$/../Delivery bot/Version 7/.idea/Version 7.iml" />
     </modules>
   </component>
 </project>

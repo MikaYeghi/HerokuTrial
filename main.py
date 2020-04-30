@@ -6,6 +6,9 @@ import psycopg2
 
 #DATABASE_URL = 'sqlite:///mydb.db'
 DATABASE_URL = os.environ.get('DATABASE_URL')
+token = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
+bot = telebot.TeleBot(token)
+k = 0
 
 def createDB():
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -45,14 +48,7 @@ def getPets():
 		pets = 'Пока что нет питомцев.'
 	
 	return pets
-	
-createDB()
 
-pet = ['Мурка', 9]
-k = 0
-
-token = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
-bot = telebot.TeleBot(token)
 
 @bot.message_handler()
 def handleMessage(message):
@@ -70,10 +66,13 @@ def handleMessage(message):
 	else:
 		bot.send_message(chat_id=message.chat.id, text='Hello world!')
 
+createDB()
 print('Bot instance started running.')
 
 while True:
+	print('Loop #{0}'.format(str(k)))
 	try:
 		bot.polling(none_stop=True)
 	except Exception as e:
 		print("Error occurred...")
+	k += 1
