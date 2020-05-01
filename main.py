@@ -7,7 +7,9 @@ import telebot
 DATABASE_URL = os.environ.get('DATABASE_URL')
 TOKEN = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
 bot = telebot.TeleBot(TOKEN)
+print('Program started.')
 server = Flask(__name__)
+print('Server created.')
 
 def createDB():
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -85,3 +87,5 @@ if __name__ == "__main__":
 	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 	print(os.environ.get('PORT'))  # print the port
 	print('Bot instance started running.')
+else:
+	print('Not entered main.')
