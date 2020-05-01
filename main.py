@@ -1,13 +1,13 @@
-import time
-import telebot
 import os
 import psycopg2
+from flask import Flask, request
+import telebot
 
 #DATABASE_URL = 'sqlite:///mydb.db'
 DATABASE_URL = os.environ.get('DATABASE_URL')
-token = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
-bot = telebot.TeleBot(token)
-k = 0
+TOKEN = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
+bot = telebot.TeleBot(TOKEN)
+server = Flask(__name__)
 
 def createDB():
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -68,10 +68,20 @@ def handleMessage(message):
 createDB()
 print('Bot instance started running.')
 
-while True:
-	print('Loop #{0}'.format(str(k)))
-	try:
-		bot.polling(none_stop=True)
-	except Exception as e:
-		print("Error occurred...")
-	k += 1
+
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+	bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+	return "!", 200
+
+
+@server.route("/")
+def webhook():
+	bot.remove_webhook()
+	bot.set_webhook(url='https://heroku-trial-mika-eu.herokuapp.com/' + TOKEN)
+	return "!", 200
+
+
+if __name__ == "__main__":
+	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+	print(os.environ.get('PORT'))  # print the port
