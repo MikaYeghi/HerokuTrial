@@ -71,7 +71,7 @@ def handleMessage(message):
 		bot.send_message(chat_id=message.chat.id, text='Hello world!')
 
 
-createDB()
+# createDB()
 
 
 @server.route('/' + TOKEN, methods=['POST'])
@@ -88,8 +88,7 @@ def webhook():
 
 
 if __name__ == "__main__":
-	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 	print(os.environ.get('PORT'))  # print the port
-	print('Bot instance started running.')
+	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 else:
 	print('Not entered main.')
