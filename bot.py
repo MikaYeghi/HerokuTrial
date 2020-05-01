@@ -3,13 +3,14 @@ import psycopg2
 from flask import Flask, request
 import telebot
 
-#DATABASE_URL = 'sqlite:///mydb.db'
+# DATABASE_URL = 'sqlite:///mydb.db'
 DATABASE_URL = os.environ.get('DATABASE_URL')
 TOKEN = '962593819:AAHwAEPjq_Q8PQFAv_KgUOEYF97_sgkb8Rw'
 bot = telebot.TeleBot(TOKEN)
 print('Program started.')
 server = Flask(__name__)
 print('Server created.')
+
 
 def createDB():
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -19,7 +20,8 @@ def createDB():
 	
 	con.commit()
 	con.close()
-	
+
+
 def addPet(new_pet, chat_id, bot):
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
@@ -35,7 +37,8 @@ def addPet(new_pet, chat_id, bot):
 	
 	con.commit()
 	con.close()
-	
+
+
 def getPets():
 	con = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = con.cursor()
@@ -44,8 +47,8 @@ def getPets():
 	pets = ''
 	for pet in data:
 		pets += pet[0] + ', ' + str(pet[1]) + '\n'
-		
-	if pets=='':
+	
+	if pets == '':
 		pets = 'Пока что нет питомцев.'
 	
 	return pets
@@ -66,6 +69,7 @@ def handleMessage(message):
 		bot.send_message(chat_id=message.chat.id, text=text)
 	else:
 		bot.send_message(chat_id=message.chat.id, text='Hello world!')
+
 
 createDB()
 
